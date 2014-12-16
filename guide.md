@@ -67,7 +67,9 @@ protocols/platform/ios/
 
 #### iOS
 
-COCOS2D-X SDK 폴더에서 아래의 구성요소를 프로젝트에 Drag & Drop 하여 추가합니다.
+COCOS2D-X SDK 폴더에서 아래의 구성요소를 프로젝트에 Drag & Drop 하여 추가합니다.  
+(PluginProtocol.xcodeproj의 경우 이미 등록된 파일이 있다면 생략합니다.)
+
 
 plugin/protocols/proj.ios/
 	
@@ -78,25 +80,24 @@ plugin/plugins/nudge/proj.ios/
 
 <img src="import_projects.png" width="240" />
 
-XCode에서 추가한 xcodeproj을 다음과 같이 수정합니다.
-- PluginProtocol.xcodeproj  
-다음 위치에 해당하는 파일들을 Drag & Drop 하여 추가합니다.
-	- ios
-    		{COCOS2DX SDK ROOT}/plugin/protocols/platform/ios/
-            	NudgeAgent.mm  
-				NudgeException.mm  
-        		NudgePurchase.mm  
-        		NudgeRewardItem.mm
-<img src="import_source.png" width="240" />
-    - include
-    		{COCOS2DX SDK ROOT}/plugin/protocols/include/
+PluginProtocol.xcodeproj에 아래와 같이 파일을 추가합니다.
+    - include폴더에 플러그인 해더 파일을 추가합니다.
+    		헤더파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/include/
             	NudgeAgent.h  
 				NudgeException.h  
         		NudgePurchase.h  
         		NudgeRewardItem.h
 <img src="import_header.png" width="240" />
+	- ios 폴더에 플러그인 소스 파일을 추가합니다.
+    		소스파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/platform/ios/
+            	NudgeAgent.mm  
+				NudgeException.mm  
+        		NudgePurchase.mm  
+        		NudgeRewardItem.mm
+<img src="import_source.png" width="240" />
 
-XCode 프로젝트를 다음과 같이 수정 합니다.
+
+XCode 프로젝트의 Build 설정을를 다음과 같이 수정 합니다.
 - Build Settings
 	- Other Linker Flags : -ObjC 추가
     - User Header Search Paths : /{COCOS2DX SDK ROOT}/plugin/protocols/include 추가  
