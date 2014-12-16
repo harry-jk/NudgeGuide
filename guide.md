@@ -81,19 +81,23 @@ plugin/plugins/nudge/proj.ios/
 <img src="import_projects.png" width="240" />
 
 PluginProtocol.xcodeproj에 아래와 같이 파일을 추가합니다.
-    - include폴더에 플러그인 해더 파일을 추가합니다.
-    		헤더파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/include/
-            	NudgeAgent.h  
-				NudgeException.h  
-        		NudgePurchase.h  
-        		NudgeRewardItem.h
+- include폴더에 플러그인 해더 파일을 추가합니다.
+	- 헤더파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/include/
+```
+NudgeAgent.h  
+NudgeException.h  
+NudgePurchase.h  
+NudgeRewardItem.h
+```
 <img src="import_header.png" width="240" />
-	- ios 폴더에 플러그인 소스 파일을 추가합니다.
-    		소스파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/platform/ios/
-            	NudgeAgent.mm  
-				NudgeException.mm  
-        		NudgePurchase.mm  
-        		NudgeRewardItem.mm
+- ios 폴더에 플러그인 소스 파일을 추가합니다.
+    - 소스파일 경로 : {COCOS2DX SDK ROOT}/plugin/protocols/platform/ios/
+```
+NudgeAgent.mm  
+NudgeException.mm  
+NudgePurchase.mm  
+NudgeRewardItem.mm
+```
 <img src="import_source.png" width="240" />
 
 
