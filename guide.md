@@ -97,26 +97,26 @@ NudgeRewardItem.mm
 <img src="import_source.png" width="240" />
 
 
-{COCOS2DX SDK ROOT 폴더}/plugin/plugins/nudge/proj.ios/Frameworks/AdFresca 폴더를 Xcode 프로젝트에 Drag & Drop 하여 추가합니다.
+2) {COCOS2DX SDK ROOT 폴더}/plugin/plugins/nudge/proj.ios/Frameworks/AdFresca 폴더를 Xcode 프로젝트에 Drag & Drop 하여 추가합니다.
 
-<img src="https://adfresca.zendesk.com/attachments/token/4uzya7c9rw4twus/?name=Screen+Shot+2013-03-27+at+8.22.04+PM.png" width="600" />
+<img src="add_lib.png" width="240" />
 
-2) libPluginNudge.a, libPluginProtocol.a, GameController.framework, MediaPlayer.framework, System Configuration.framework, StoreKit.framework, AdSupport.framework(선택)를 Xcode 프로젝트에 추가합니다.
-  
-  <img src="https://adfresca.zendesk.com/attachments/token/rny0s0zm3modful/?name=2Untitled.png" width="600" />
+3) libPluginNudge.a, libPluginProtocol.a, GameController.framework, MediaPlayer.framework, System Configuration.framework, StoreKit.framework, AdSupport.framework(선택)를 Xcode 프로젝트에 추가합니다.
+
+<img src="link_lib.png" width="640" />
   
   - AdSupport.framework를 추가할 경우, SDK는 [IFA(Identifier For Advertisers)](https://developer.apple.com/library/ios/documentation/AdSupport/Reference/ASIdentifierManager_Ref/ASIdentifierManager.html#jumpTo_3) 값을 수집하여 디바이스(=앱 사용자) 구분에 사용합니다. Nudge SDK는 IFA 값을 사용하여 크로스 프로모션 캠페인 기능을 제공하고 캠페인 노출 이후 사용자의 앱 설치 및 액션 트랙킹을 위해 사용하고 있습니다. 
   - AdSupport.framework를 제외할 경우, [IFV(Identifier For Vendor)](https://developer.apple.com/library/ios/documentation/uikit/reference/UIDevice_Class/Reference/UIDevice.html#jumpTo_7) 값을 사용합니다. 이 경우 크로스 프로모션 캠페인 기능을 이용할 수 없으며 IFV의 특성상 사용자가 앱을 삭제하고 재설치할 때 새로운 디바이스(=앱 사용자)로 인식될 수 있습니다. 
 
   만약, 앱 업데이트 과정에서 AdSupport.framework를 제외하거나 새로 추가하는 경우 [IFV Only Option](#ifv-only-option) 항목의 내용을 참고하여 주시기 바랍니다.
 
-3) Build Setting의 Other Linker Flags 값을 –ObjC로 설정 혹은 추가,
+4) Build Setting의 Other Linker Flags 값을 –ObjC로 설정 혹은 추가,
 User Header Search Paths 값에 {COCOS2DX SDK ROOT 폴더}/plugin/protocols/include를 절대경로 혹은 상대경로로 추가합니다. 
 
-  <img src="https://adfresca.zendesk.com/attachments/token/rny0s0zm3modful/?name=2Untitled.png" width="600" />
-  <img src="user_header_path.png" width="540" />
+<img src="other_linker_flags.png" width="600" />
+<img src="user_header_path.png" width="600" />
 
-4) Info.plst 파일의 'aps-environment' 값을 'production' 으로 설정합니다. (Push Notification 적용 시 반드시 확인해주시기 바랍니다.)
+5) Info.plst 파일의 'aps-environment' 값을 'production' 으로 설정합니다. (Push Notification 적용 시 반드시 확인해주시기 바랍니다.)
 
   <img src="https://adfresca.zendesk.com/attachments/token/bd7oz41zoh5zjs4/?name=Screen+Shot+2013-02-07+at+5.22.50+PM.png" width="600" />
 
