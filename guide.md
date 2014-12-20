@@ -144,7 +144,8 @@ NudgeException.cpp \
 ) \
 ...
 ```
-2) {COCOS2D-X SDK ROOT 폴더}/plugin/tools/config.sh를 다음과 같이 수정합니다
+2) {COCOS2D-X SDK ROOT 폴더}/plugin/tools/config.sh를 다음과 같이 수정합니다.
+(Cocos2D-X 3.3 이후 버전, Plugin-X 최신 버전인경우 해당 부분 진행시 ALL_PLUGINS가 없을수 있으며, 그 경우는 이 단계를 건너 뛰고 진행합니다.)
 ```sh
 #define plugins array 
 export ALL_PLUGINS=( ... \
