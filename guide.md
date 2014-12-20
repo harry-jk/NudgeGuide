@@ -157,9 +157,6 @@ export ALL_PLUGINS=( ... \
 
 3) Nudge SDK 폴더에 있는 install_android.sh를 실행후 지시에 따라 진행합니다.  
 (지시에 나오는 모든 경로는 절대경로를 넣어주세요.)  
-<img src="install_android.png" width="640" />
-<img src="insert_path.png" width="540" />
-<img src="select_plugin.png" width="540" />
 
 4) Game Project폴더에 proj.android/jni/Android.mk를 수정합니다.
 ```mk
@@ -185,7 +182,6 @@ void cocos_android_app_init(JNIEnv* env, jobject thiz) {
     PluginJniHelper::setJavaVM(vm);
 }
 ```
-<img src="main_cpp.png" width="540" />
 6) Game Project폴더에 proj.android/src/org/cocos2dx/cpp/AppActivity.java
 ```java
 ...
@@ -208,7 +204,6 @@ public class AppActivity extends Cocos2dxActivity {
     ...
 }
 ```
-<img src="activity_java.png" width="540" />
 
 ### Start Session
 
