@@ -104,6 +104,9 @@ NudgeRewardItem.mm
 3) libPluginNudge.a, libPluginProtocol.a, GameController.framework, MediaPlayer.framework, System Configuration.framework, StoreKit.framework, AdSupport.framework(선택)를 Xcode 프로젝트에 추가합니다.
 
 <img src="link_lib.png" width="640" />
+<img src="link_lib_1.png" width="640" />
+<img src="link_lib_2.png" width="640" />
+<img src="link_lib_3.png" width="640" />
   
   - AdSupport.framework를 추가할 경우, SDK는 [IFA(Identifier For Advertisers)](https://developer.apple.com/library/ios/documentation/AdSupport/Reference/ASIdentifierManager_Ref/ASIdentifierManager.html#jumpTo_3) 값을 수집하여 디바이스(=앱 사용자) 구분에 사용합니다. Nudge SDK는 IFA 값을 사용하여 크로스 프로모션 캠페인 기능을 제공하고 캠페인 노출 이후 사용자의 앱 설치 및 액션 트랙킹을 위해 사용하고 있습니다. 
   - AdSupport.framework를 제외할 경우, [IFV(Identifier For Vendor)](https://developer.apple.com/library/ios/documentation/uikit/reference/UIDevice_Class/Reference/UIDevice.html#jumpTo_7) 값을 사용합니다. 이 경우 크로스 프로모션 캠페인 기능을 이용할 수 없으며 IFV의 특성상 사용자가 앱을 삭제하고 재설치할 때 새로운 디바이스(=앱 사용자)로 인식될 수 있습니다. 
@@ -339,7 +342,7 @@ protected String getGCMIntentServiceClassName(Context context) {
 } 
 ```
 
-5) Cocos2D-X 환경에서 GCM 적용하기
+4) Cocos2D-X Game프로젝트에서 AppDelegate.cpp파일에 GCM 적용하기
 
 이제 Cocos2D-X코드에서 GCM Sender ID 값을 플러그인에 설정하여 적용을 완료합니다. 만약 기존에 사용 중인 GCM 서비스가 있어 이미 디바이스의 GCM 푸시 고유 아이디를 알고 있는 경우, setPushRegistrationIdentifier(const char*) 메소드를 호출하여 값만 설정하는 것도 가능합니다.
 
@@ -413,10 +416,12 @@ Nudge는 테스트 모드 기능을 지원하여 테스트를 원하는 디바�
 plugin::NudgeAgent* nudge = plugin::NudgeAgent::getInstance();
 nudge->startSession(API_KEY);
 
-log(nudge->getTestDeviceId().c_str(), "");
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	log(nudge->getTestDeviceId().c_str(), "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	nudge->printTestDeviceId();
+#endif
 ```
-안드로이드의 경우에 TestDeviceId가 공백으로 return 되는 경우가 있습니다.
-이 경우는 내부적으로 Test Device Id를 log로 출력합니다.
 
 2) setPrintTestDeviceId() 메소드를 사용하여 화면에 Device ID를 표시하는 방법
 
