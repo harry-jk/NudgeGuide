@@ -131,7 +131,7 @@ User Header Search Paths 값에 {COCOS2DX SDK ROOT 폴더}/plugin/protocols/incl
 #### Android
 
 1) {COCOS2D-X SDK ROOT 폴더}/plugin/protocols/proj.android/jni/Anroid.mk를 다음과 같이 수정합니다.
-```mk
+```makefile
 ...
 LOCAL_SRC_FILES :=\
 $(addprefix ../../platform/android/, \
