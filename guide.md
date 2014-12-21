@@ -417,7 +417,7 @@ plugin::NudgeAgent* nudge = plugin::NudgeAgent::getInstance();
 nudge->startSession(API_KEY);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	log(nudge->getTestDeviceId().c_str(), "");
+	log("%s", nudge->getTestDeviceId().c_str());
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	nudge->printTestDeviceId();
 #endif
@@ -459,7 +459,7 @@ Nudge의 In-App-Purchase Tracking은 2가지 유형이 있습니다.
 
 Hard Currency Item의 결제는 각 앱스토어별 인-앱 결제 라이브러리를 통해 이루어집니다. 각 결제 라이브러리에서 _'결제 성공'_ 이벤트가 발생 할 시에 Purchase 객체를 생성하고 logPurchase(purchase) 메소드를 호출합니다. 그리고 _'결제 실패'_ 이벤트가 발생 할 시에는 cancelPromotionPurchase() 메소드를 호출합니다.
 
-적용 예제 1: Cocos2D-X 환경에서 결제 성공 이벤트 발생 시
+적용 예제 1: 결제 성공 이벤트 발생 시
 ```cpp
 using namespace cocos2d::plugin;
 void Scene::onHardItemPurchased() 
@@ -542,8 +542,8 @@ nudge::PurchaseExceptionCallback을 구현하는 방법이 여러가지가 있�
 ......
 NudgeAgent::getInstance()->logPurchase(purchase, [](plugin::NudgePurchase* purchase, plugin::NudgeException* ex)
 {
-	log(purchase->getPurchaseToJson().c_str(), "");
-    log(ex->getExceptionToJson().c_str(), "");
+	log("%s", purchase->getPurchaseToJson().c_str());
+    log("%s", ex->getExceptionToJson().c_str());
 });
 ```
 
@@ -560,8 +560,8 @@ void Scene::onSoftItemPurchased()
 
 void Scene::onPurchaseException(plugin::NudgePurchase* purchase, plugin::NudgeException* ex)
 {
-	log(purchase->getPurchaseToJson().c_str(), "");
-    log(ex->getExceptionToJson().c_str(), "");
+	log("%s", purchase->getPurchaseToJson().c_str());
+    log("%s", ex->getExceptionToJson().c_str());
 }
 ```
 
@@ -602,7 +602,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     nudge->setRewardItemCallback();
     nudge->checkRewardItems([](NudgeRewardItem* rewardItem)
     {
-        log(rewardItem->getRewardItemToJson().c_str(), "");
+        log("%s", rewardItem->getRewardItemToJson().c_str());
         sendItemToUser(currentUserId, rewardItem->getUniqueValue(), rewardItem->getQuantity(), 
                         rewardItem->getSecurityToken());
     });
@@ -656,7 +656,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	NudgeAgent::getInstance()->setPromotionCallback([](NudgePurchase* purchase){
 		if(purchase == nullptr)
 		{
-			log("purchase is null", "");
+			log("%s", "purchase is null");
 			return;
 		}
 		std::string itemId = purchase->getItemId();
@@ -743,9 +743,7 @@ void AppDelegate::onUserLevelChanged(int level)
 ```cpp
 void Scene::onGameFinished() {
 	NudgeAgent* nudge = NudgeAgent::getInstance();
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     nudge->incrCustomParameterValue(CUSTOM_PARAM_INDEX_PLAY_COUNT, 1);
-    #endif
 }
 ```
 
@@ -796,7 +794,7 @@ nudge->show();
 ```cpp
 NudgeAgent* nudge = NudgeAgent::getInstance();
 nudge->setShowFinishCallback([](){
-    log("onShowFinish");
+    log("%s", "onShowFinish");
 });
 ```
 
@@ -1001,8 +999,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 ...
 void AppDelegate::onCustomURL(std::string url)
 {
-	log("onCustomURL");
-	log(url.c_str(), "");
+	log("%s", "onCustomURL");
+	log("%s", url.c_str());
     //ex) myapp://com.adfresca.custom?item=abc 값이 전달된 경우 item=abc 값을 파싱하여 아이템 지급
 }
 ...
@@ -1256,7 +1254,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 ...
 void AppDelegate::onException(plugin::NudgeException* exception)
 {
-	log("onException");
+	log("%s", "onException");
 	log("code : %d, message : %s", exception->getCode(), exception->getMessage().c_str());
 }
 ...
