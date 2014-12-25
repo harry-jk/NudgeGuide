@@ -947,7 +947,7 @@ public class PushProxyActivity extends Activity {
   }
 ```
 
-Android 플랫폼 환경에서 Custom URL을 처리할 수 있는 모든 방법을 구현하였습니다.
+Android 플랫폼 환경에서 Custom URL을 처리할 수 있는 준비가 끝났습니다.
 
 #### iOS 환경에서 Custom URL 적용하기
 
@@ -1144,9 +1144,7 @@ _Image Push Notification_ 기능을 적용하기 위해서는 아래의 과정�
 
 현재 메시지 뷰에 표시되는 이미지 리소스는 애플리케이션 빌드에 포함된 파일이름을 대쉬보드에서 지정하여 적용됩니다. (이후 서비스 업데이트를 통해 대쉬보드에서 별도로 등록한 이미지를 내려받아 표시하는 기능이 추가됩니다.)
 
-Nudge Android SDK는 애플리케이션 빌드의 'assets', 'res/drawable', 'res/raw' 폴더에 위치한 이미지 파일을 검색하여 표시하고 있습니다. 원하는 이미지 파일을 해당 위치에 저장하여 빌드합니다.
-
-* 기본적으로 Cocos2D-X프로젝트의 Resources에 이미지를 저장하는경우 Cocos2D-X빌드시 Resources에 저장된 파일들이 assets에 복사됩니다.
+Cocos2D-X Game 프로젝트의 Resources에 원하는 이미지 파일을 저장하여 빌드합니다.
 
 FHD (1080 * 1920) 해상도의 단말기 기준으로 권장하는 이미지 사이즈 리스트는 아래와 같습니다.
 - 464px * 464px (1:1 비율의 이미지를 사용할 경우)
@@ -1260,6 +1258,35 @@ void AppDelegate::onException(plugin::NudgeException* exception)
 ...
 ```
 
+* * *
+
+### PluginProtocol Build Error
+
+#### Android
+install_android.sh실행시 다음과 같은 애러가 발생할 수 있습니다.
+
+<img src="build_error.png" width=650/>
+<img src="build_error_2.png" width=650/>
+
+해당 애러가 발생시 Cocos2D-X SDK 폴더/plugin/protocols/proj.android/jni/Application.mk 를 텍스트 에디터로 열어서 다음부분을 확인후 "-std=c++11"을 추가합니다.
+```makefile
+...
+# -std=c++11이 있는지 확인하시고 없으면 아래와 같이 추가합니다.
+APP_CPPFLAGS += -frtti -std=c++11
+...
+```
+
+#### IOS
+IOS 빌드시 다음과 같은 애러가 발생할 수 있습니다.
+
+<img src="link_error.png" width=650/>
+
+해당 애러가 발생시 PluginProtocol 프로젝트의 Build Setting의 Architectures를 다음과 같이 수정합니다.
+
+- before  
+<img src="arch_before.png" width=650/>
+- after  
+<img src="arch_after.png" width=650/>
 * * *
 
 ## Release Notes
